@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
             return 3;
         }
 
+
+        //添加选项卡
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
