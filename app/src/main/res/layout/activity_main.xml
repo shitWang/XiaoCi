@@ -70,7 +70,8 @@
                 android:layout_height="?attr/actionBarSize">
 
 
-                <EditText
+                <AutoCompleteTextView
+                    android:id="@+id/am_acet_input"
                     android:paddingRight="30dp"
                     android:textColorHint="#aaffffff"
                     android:hint="请输入要搜索的单词"
