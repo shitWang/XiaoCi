@@ -93,37 +93,44 @@ public class WordModel {
 
 
         //sd上数据库的路径
-        File dir = new File(DATABASE_FILEPATH);
+        File dir = new File(DATABASE_PATH);
         if(!dir.exists()){
 
-            dir.mkdir();
-
-            //将安装包的数据库复制到SD卡上
-            InputStream is = context.getResources().openRawResource(R.raw.dictionary);
-
-            try {
-
-                FileOutputStream fos = new FileOutputStream(DATABASE_FILEPATH);
-                byte[] buffers = new byte[1024];
-                int length;
-                while((length = is.read(buffers))!=-1){
-
-                    fos.write(buffers,0,length);
+            dir.mkdirs();
 
 
+            if(!new File(DATABASE_FILEPATH).exists()){
+
+
+                //将安装包的数据库复制到SD卡上
+                InputStream is = context.getResources().openRawResource(R.raw.dictionary);
+
+                try {
+
+                    FileOutputStream fos = new FileOutputStream(DATABASE_FILEPATH);
+                    byte[] buffers = new byte[1024];
+                    int length;
+                    while((length = is.read(buffers))!=-1){
+
+                        fos.write(buffers,0,length);
+
+
+                    }
+
+                    is.close();
+                    fos.close();
+
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    System.out.println(e.toString());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println(e.toString());
                 }
 
-                is.close();
-                fos.close();
-
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                System.out.println(e.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println(e.toString());
             }
+
 
         }
 

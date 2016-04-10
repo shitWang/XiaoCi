@@ -18,8 +18,7 @@
             app:contentScrim="?attr/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
+            
             <LinearLayout
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.9"

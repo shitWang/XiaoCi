@@ -1,6 +1,7 @@
 package com.shannon.xiaoci.main.view.activity;
 
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,14 +13,14 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shannon.xiaoci.R;
 import com.shannon.xiaoci.main.view.adapter.DictionaryAdapter;
 import com.shannon.xiaoci.main.view.fragment.DicBookFragment;
-import com.shannon.xiaoci.main.view.fragment.MainFragment;
+import com.shannon.xiaoci.news.model.NewsModel;
+import com.shannon.xiaoci.news.view.fragment.NewsFragment;
 import com.shannon.xiaoci.main.view.fragment.SettingFragment;
 import com.shannon.xiaoci.main.view.inter.SearchViewInter;
 import com.shannon.xiaoci.search.model.WordModel;
@@ -51,9 +52,22 @@ public class MainActivity extends AppCompatActivity implements SearchViewInter,T
 
     private void initData() {
 
-        al_fragments.add(new MainFragment());
+        al_fragments.add(new NewsFragment());
         al_fragments.add(new DicBookFragment());
         al_fragments.add(new SettingFragment());
+
+
+        new AsyncTask<Integer , Integer , String>(){
+
+
+            @Override
+            protected String doInBackground(Integer... params) {
+
+                NewsModel.getNews(MainActivity.this , params[0]);
+                return null;
+            }
+        }.execute(2);
+
 
 
 
